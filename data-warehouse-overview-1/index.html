@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="John Doe">
+
+
+
+
+
+
+
+<title>資料倉儲概述 Data Warehouse Overview （一） | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Roboto+Mono&display=swap');
+</style>
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/menu.js"></script>
+    
+
+
+
+
+
+
+
+
+
+
+  <meta name="generator" content="Hexo 7.3.0"></head>
+  <body>
+    <div class="mask-border">
+    </div>
+
+    <div class="wrapper">
+
+      <div class="header">
+  <div class="flex-container">
+    <div class="header-inner">
+      <div class="site-brand-container">
+        <a href="/">
+          
+            Shawn&#39;s Notes
+          
+        </a>
+      </div>
+      <div id="menu-btn" class="menu-btn" onclick="toggleMenu()">
+        Menu
+      </div>
+      <nav class="site-nav">
+        <ul class="menu-list">
+          
+            
+              <li class="menu-item">
+                <a href="/">Home</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/archives/">Archive</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/tag/">Tags</a>
+              </li> 
+                   
+          
+          
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+<script src="/js/menu.js"></script>
+
+
+      <div class="main">
+        <div class="flex-container">
+          <article id="post">
+
+  
+    <div class="post-head">
+    <div class="post-info">
+        <div class="tag-list">
+            
+                
+                    <span class="post-tag">
+                        <a href="/tags/%E8%B3%87%E6%96%99%E5%80%89%E5%84%B2/">
+                            資料倉儲
+                        </a>
+                    </span>    
+                
+                    <span class="post-tag">
+                        <a href="/tags/Data-Warehouse/">
+                            Data Warehouse
+                        </a>
+                    </span>    
+                           
+            
+        </div>
+        <div class="post-title">
+            
+            
+                資料倉儲概述 Data Warehouse Overview （一）
+            
+            
+        </div>
+        <span class="post-date">
+            Sep 15, 2025
+        </span>
+    </div>
+    <div class="post-img">
+        
+            <div class="h-line-primary"></div>
+              
+    </div>
+</div>
+    <div class="post-content">
+    <h2 id="資料倉儲-Data-Warehouse"><a href="#資料倉儲-Data-Warehouse" class="headerlink" title="資料倉儲 Data Warehouse"></a>資料倉儲 Data Warehouse</h2><hr>
+<p><img src="/image/chrome_GnRR2u02SK.png" alt="image"></p>
+<p>　　<strong>資料倉儲</strong> 是一種資料儲存的概念，日常生活中各種交易或是操作紀錄可能會先在應用系統上面被記錄下來，再送到資料倉儲去統一儲存，以便後續根據商業分析、BI、ML的需求能夠快速取得使用資料。引用Bill Inmon提出的資料倉儲特性大致如下：  </p>
+<p><strong>整合性 Integrated</strong> : 資料倉儲整合來自不同系統的資料，透過清洗與轉換，保持資料的一致性跟正確性。</p>
+<p><strong>主題導向 Subject-Oriented</strong> : 不管資料來自哪些系統、以什麼樣的形式儲存，資料倉儲應根據業務主題去設計，而非著重在日常的交易處理。</p>
+<p><strong>時間變異性 Time Variant</strong> : 資料倉儲會儲存時間序列的資料（歷史資料），可根據時間的變化對資料進行追蹤和分析。</p>
+<p><strong>非暫存性Non-Volatile</strong> : 為了保持資料的穩定性以及歷史資料的完整性，資料幾乎保持在唯讀的狀態，若有修改的情況也會保留原始資料。</p>
+<br>
+
+<blockquote>
+<p><em><strong>集中式 VS 分散式</strong></em></p>
+<p>開頭的示意圖中，將所有資料都送進單一的資料庫的形式稱作 <strong>集中式資料倉儲(Centralized Data Warehouse)</strong> 。這是理想情況下的預設架構，最傳統且簡易，也滿足One-Stop Shopping(OSS)，可以從此處取得所有所需的資料，供報表、BI、分析等等用途。</p>
+<p>另有 <strong>分散式資料倉儲(Distributed Data Warehouse)</strong> 的概念，將資料儲存在不同主機系統或者是不同地區，使用上也有更高的難度。</p>
+</blockquote>
+<br>
+
+<h2 id="資料市集-Data-Mart"><a href="#資料市集-Data-Mart" class="headerlink" title="資料市集 Data Mart"></a>資料市集 Data Mart</h2><hr>
+<p>　　Data Warehouse的資料通常會提供給下游使用，根據不同的範疇，可能是部門、地區、功能等，去切分專用的區塊，稱為 <strong>資料市集(Data Mart)</strong> 。回顧文章開頭的示意圖，資料來源系統&#x2F;客戶端應用程式提供交易資料，Data Warehouse整合資料，Data Mart取得整合過的資料進行商業分析或報表需求等等，因此Data Mart一般來說需仰賴Data Warehouse提供的資料，也因此Data Mart的資料規範較一致，Data Flow基本上就是從左往右的資料流。</p>
+<br>
+
+<blockquote>
+<p><em><strong>相依 VS 獨立</strong></em></p>
+<p>　　上述Data Mart資料一律來自Data Warehouse的型態稱作 <strong>相依資料市集(Dependent Data Mart)</strong> ，另外還有 <strong>獨立資料市集(Independent Data Mart)</strong> 是直接跳過Data Warehouse從來源系統撈取資料，獨立運作，相當於自身就是較小的Data Warehouse。</p>
+<p>　　Independent Data Mart在彼此之間資料規範較混亂，沒有一致性；且資料流之間沒有直接關聯，每個Data Mart都有不同的來源，下游在取得資料時也來自各個不同的Data Mart，如果將Data Flow畫出來通常都相當雜亂。</p>
+</blockquote>
+<br>
+
+<p>　　取用各種資料來源時並非單純寫入資料倉儲，不同的系統內對資料定義很容易有落差，在設計前必須要花大量時間先釐清每一份來源資料的內容定義，根據主題去統一的資料的階層、屬性、規範等等，這非常依賴對上游資料內容以及下游資料需求的理解。</p>
+<p>　　舉例來說，不同系統的幣別及小數精確度可能不同、現金流是逐銀存認列還是逐票據認列，這些細節往往影響資料倉儲的設計，影響後續BI或OLAP Cubes分析的正確性。理想情況下，可以先從各種來源整合出一份 <strong>Master Data</strong> ，Master Data需要有高度的資料治理來維護，結合良好的Schema設計，作為後續建立維度表跟事實表最權威的Single Source of Truth(SSOT)。 </p>
+
+</div> 
+
+<script>
+    window.onload = detectors();
+</script>
+    <div class="post-footer">
+    <div class="h-line-primary"></div>
+    <nav class="post-nav">
+        <div class="prev-item">
+           
+        </div>
+        <div class="next-item">
+            
+        </div>
+    </nav>
+</div>
+
+    
+      <div class="post-comment">
+
+     
+
+     
+    
+    
+
+</div>
+     
+  
+</article>
+        </div>
+      </div>
+      
+      <div class="footer">
+    <div class="flex-container">
+        <div class="footer-text">
+            
+            
+                © 2025 Shawn M. Lin | 
+            
+            
+                Powered by <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> & <a target="_blank" rel="noopener" href="https://github.com/zoeingwingkei/frame/">Frame</a>
+                
+        </div>
+    </div>
+</div>
+
+    </div>
+
+    
+    
+
+  </body>
+</html>
